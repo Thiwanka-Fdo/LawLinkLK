@@ -1,7 +1,7 @@
 "use client"
 
-import Hero from "../src/pages/home/components/Hero/index"
+import  from ".."
 
 export default function SyntheticV0PageForDeployment() {
-  return <Hero />
+  return < />
 }
