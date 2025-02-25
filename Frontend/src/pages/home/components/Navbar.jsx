@@ -1,8 +1,9 @@
 "use client"
 
 import { useState } from "react"
+import { Link } from "react-router-dom"
+import { Link as ScrollLink } from "react-scroll"
 import { FaBars, FaTimes } from "react-icons/fa"
-import { Link } from "react-scroll"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -20,15 +21,15 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <div className="flex items-center">
-            <span className="text-2xl font-bold text-[#0066cc]">LawLinkLK</span>
+            <Link to="/" className="text-2xl font-bold text-[#0066cc]">
+              LawLinkLK
+            </Link>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
+              <ScrollLink
                 key={item.name}
                 to={item.to}
                 smooth={true}
@@ -36,17 +37,22 @@ const Navbar = () => {
                 className="text-gray-600 hover:text-[#0066cc] cursor-pointer transition-colors"
               >
                 {item.name}
-              </Link>
+              </ScrollLink>
             ))}
-            <button className="px-4 py-2 text-[#0066cc] border border-[#0066cc] rounded-md hover:bg-[#0066cc] hover:text-white transition-colors">
+            <Link
+              to="/login"
+              className="px-4 py-2 text-[#0066cc] border border-[#0066cc] rounded-md hover:bg-[#0066cc] hover:text-white transition-colors"
+            >
               Login
-            </button>
-            <button className="px-4 py-2 bg-[#0066cc] text-white rounded-md hover:bg-[#0055aa] transition-colors">
+            </Link>
+            <Link
+              to="/register"
+              className="px-4 py-2 bg-[#0066cc] text-white rounded-md hover:bg-[#0055aa] transition-colors"
+            >
               Register
-            </button>
+            </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button onClick={toggleMenu} className="text-gray-600">
               {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -54,12 +60,11 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
-                <Link
+                <ScrollLink
                   key={item.name}
                   to={item.to}
                   smooth={true}
@@ -68,15 +73,21 @@ const Navbar = () => {
                   onClick={toggleMenu}
                 >
                   {item.name}
-                </Link>
+                </ScrollLink>
               ))}
               <div className="space-y-2 pt-2">
-                <button className="w-full px-4 py-2 text-[#0066cc] border border-[#0066cc] rounded-md hover:bg-[#0066cc] hover:text-white transition-colors">
+                <Link
+                  to="/login"
+                  className="block w-full px-4 py-2 text-[#0066cc] border border-[#0066cc] rounded-md hover:bg-[#0066cc] hover:text-white transition-colors"
+                >
                   Login
-                </button>
-                <button className="w-full px-4 py-2 bg-[#0066cc] text-white rounded-md hover:bg-[#0055aa] transition-colors">
+                </Link>
+                <Link
+                  to="/register"
+                  className="block w-full px-4 py-2 bg-[#0066cc] text-white rounded-md hover:bg-[#0055aa] transition-colors"
+                >
                   Register
-                </button>
+                </Link>
               </div>
             </div>
           </div>
